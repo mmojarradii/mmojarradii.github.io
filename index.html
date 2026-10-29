@@ -65,8 +65,9 @@ h1 {
 }
 .role { margin: 0; color: var(--gold); font-size: 15px; letter-spacing: 0.04em; text-wrap: balance; }
 .rule { width: 56px; height: 1px; background: var(--gold-lo); margin-block: 4px; }
-.tagline { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 12px; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
-.tagline span + span::before { content: "|"; margin-inline-end: 12px; color: var(--gold-lo); }
+.tagline { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+.tagline .row { display: flex; justify-content: center; gap: 12px; }
+.tagline .row span + span::before { content: "|"; margin-inline-end: 12px; color: var(--gold-lo); }
 .wrap[lang="fa"] h1 { font-family: var(--font-fa); font-weight: 500; letter-spacing: 0; font-size: 25px; }
 .wrap[lang="fa"] .role { letter-spacing: 0; }
 .wrap[lang="fa"] .tagline { letter-spacing: 0; text-transform: none; font-size: 12.5px; }
@@ -122,7 +123,7 @@ var T = {
     toggle: "فارسی", dir: "ltr",
     name: "MOHAMMAD MOJARRADI",
     role: "Mechanical Engineer",
-    tagline: ["Advanced Mechanical Systems", "Robotics", "R&D"],
+    tagline: [["Advanced Mechanical Systems"], ["Robotics", "R&D"]],
     focus: ["Advanced Mechanical Systems", "Robotics", "Research", "R&D Innovation"],
     linksTitle: "Connect",
     copy: "COPY", copied: "COPIED", select: "SELECTED"
@@ -131,7 +132,7 @@ var T = {
     toggle: "EN", dir: "rtl",
     name: "محمد مجردی",
     role: "مهندس مکانیک",
-    tagline: ["سیستم‌های مکانیکی پیشرفته", "رباتیک", "پژوهش و توسعه"],
+    tagline: [["سیستم‌های مکانیکی پیشرفته"], ["رباتیک", "پژوهش و توسعه"]],
     focus: ["سیستم‌های مکانیکی پیشرفته", "رباتیک", "پژوهش", "نوآوری و توسعه"],
     linksTitle: "ارتباط با من",
     copy: "کپی", copied: "کپی شد", select: "انتخاب شد"
@@ -170,7 +171,7 @@ var ICONS = {
     $("name").textContent = d.name;
     $("role").textContent = d.role;
     var tg = $("tagline"); tg.textContent = "";
-    d.tagline.forEach(function (t) { var s = document.createElement("span"); s.textContent = t; tg.appendChild(s); });
+    d.tagline.forEach(function (row) { var r = document.createElement("div"); r.className = "row"; row.forEach(function (t) { var s = document.createElement("span"); s.textContent = t; r.appendChild(s); }); tg.appendChild(r); });
     var list = $("linkList"); list.textContent = "";
     LINKS.forEach(function (it) {
       var a;
